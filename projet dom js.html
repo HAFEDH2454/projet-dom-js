@@ -1,0 +1,260 @@
+
+<html lang="fr">
+    <head>
+        <style>
+        
+        .coeur
+    {filter: grayscale(100%);
+        width:50px;
+        height:50px;
+    }
+        .coeur:active
+    {filter: grayscale(0%);
+        
+    }
+.qte
+    {
+        width: 30px;
+    }
+        
+        </style>
+        
+        
+        
+        <meta charset="UTF-8">
+        <title>Panier HTML5 + JavaScript</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="panier.js"></script>
+        <script type="text/javascript">
+            function ajouter()
+            {
+                var code = parseInt(document.getElementById("id").value);
+                var qte = parseInt(document.getElementById("qte").value);
+                var prix = parseInt(document.getElementById("prix").value);
+                var monPanier = new Panier();
+                monPanier.ajouterArticle(code, qte, prix);
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                var longueur = monPanier.liste.length;
+                for(var i = 0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }
+            
+            function supprimer(code)
+            {
+                var monPanier = new Panier();
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                monPanier.supprimerArticle(code);
+                var longueur = monPanier.liste.length;
+                for(var i = 0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }            function incrementValue()
+            {
+    var value = parseInt(document.getElementById('qute').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('qute').value = value;
+    }
+}
+function decrementValue1()
+{
+    var value = parseInt(document.getElementById('qute1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('qute1').value = value;
+    }
+
+}
+            function incrementValue1()
+            {
+    var value = parseInt(document.getElementById('qute1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('qute1').value = value;
+    }
+}
+            function incrementValue()
+            {
+    var value = parseInt(document.getElementById('qute').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('qute').value = value;
+    }
+}
+function decrementValue()
+{
+    var value = parseInt(document.getElementById('qute').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('qute').value = value;
+    }
+
+}
+            function incrementValue2()
+            {
+    var value = parseInt(document.getElementById('qute2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('qute2').value = value;
+    }
+}
+function decrementValue2()
+{
+    var value = parseInt(document.getElementById('qute2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('qute2').value = value;
+    }
+
+}
+            function incrementValue3()
+            {
+    var value = parseInt(document.getElementById('qute3').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('qute3').value = value;
+    }
+}
+function decrementValue3()
+{
+    var value = parseInt(document.getElementById('qute3').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('qute3').value = value;
+    }
+
+}
+    function supp()
+            {
+               return document.removeEventListener(document.getElementById('input-sm form-control').innerHTML)=0;
+            }
+        </script>
+    </head>
+    <body>
+        <section  class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                <legend>Gestion du panier</legend>
+                <label class="col-lg-3" >Quantité</label> : <input type = "number" id = "qte" style="width:120px" class="input-sm form-control"></input><br><br> 
+                <label class="col-lg-3">Prix</label> : <input type = "number" id = "prix" style="width:120px" class="input-sm form-control"></input><br><br>
+                <button class="btn btn-primary" type="submit" onclick="ajouter()"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter au panier</button>
+                <button class="btn btn-primary" type="reset" onclick="supp()" ><span class="glyphicon glyphicon-shopping-cart"></span> supprime </button>
+            </article>
+        </section>
+        <section class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                <legend>Contenu du panier</legend>
+                <table id="tableau" class="table">
+                    <thead>
+                        <tr>
+                            <th>Code:</th>
+                            <th>Quantite:</th>
+                            <th>Prix unitaire:</th>
+                            <th>Prix de la ligne:</th>
+                            <th>Supprimer:</th>
+                        </tr>
+                    </thead>
+                </table>
+                <br><label>Prix du panier total:</label> : <label id = "prixTotal"></label>
+                <label id = "nbreLignes" hidden>0</label>
+            </article>
+        </section>
+ 
+     <div class="Attache">
+     <img src="./img/attache.jpg">
+            Attache papier:
+            Vous attachez vos papiers en toute sécurité
+            1 dinar 
+     <img src="./img/coeur.jpg"  class="coeur" onclick="visit()">
+            <button type="button" class="ajout" onclick="ajouter()">ajoute dans le panier</button><button type="button" class="moin" onclick="decrementValue()">-</button>
+            <input type=number class="qte" id="qute" value="0">
+            <button type="button" class="plus"  onclick="incrementValue()" >+</button>
+  </div>
+ <div class="tiroire">
+    <img src="./img/tiroire.jpg" >
+        Tiroir en bois métallique:
+        ranger vos papier en toute sécurité
+        4500 dinars
+        <img src="./img/coeur.jpg" class="coeur">
+        <button type="button" class="ajout" onclick="ajouter()">ajoute dans le panier</button><button type="button" class="moin" onclick="decrementValue1()">-</button>
+        <input type=number class="qte" id="qute1" value="0">
+        <button type="button" class="plus" onclick="incrementValue1()" >+</button>
+  </div>
+  <div class="tampon">
+        <img src="./img/tampon.jpg" >
+        Tampon en or pas massif
+        Bonne tenue couleur impec et super beau
+        10dinars<a href=""><img src="./img/coeur.jpg" class="coeur"></a>
+        <button type="button" class="ajout" onclick="ajouter()">ajoute dans le panier</button><button type="button" class="moin" onclick="decrementValue2()">-</button>
+        <input type=number class="qte" id="qute2" value="0" >
+        <button type="button" class="plus"onclick="incrementValue2()">+</button>
+  </div>
+  <div class="ciseau">
+        <img src="./img/ciseau.jpg" >
+            Ciseau en platine
+            excellente coupe droite et de travers
+        5 dinars<a href=""><img src="./img/coeur.jpg" class="coeur"></a>
+       <button type="button" class="ajout" onclick="ajouter()">ajoute dans le panier</button><button type="button" class="moin" onclick="decrementValue3()">-</button>
+        <input type=number class="qte" id="qute3" value="0">
+      <button type="button" class="plus" onclick="incrementValue3()" >+</button>
+    
+    </div>
+    
+    
+    </body>
+</html>
